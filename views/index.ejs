@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>EUnit 2 Assessment</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+   
+    <h1>To do List</h1>
+    <% if (todos.length===0) { %>
+      There are no To Dos yet!
+      <% } else { %>
+  <ul>
+    <% todos.forEach(function(t) { %>
+      <li>
+        <form action="/todos/<%= t.id %>?_method=DELETE"
+          class="delete-form" method="POST">
+          <button type="submit">X</button>
+        </form>
+        <div href="/todos/<%= t.id %>"><%= t.todo %></a>
+      </li>
+    <% }) %>
+  </ul>
+  <% }; %>
+
+    <hr>
+    <h4>New To Do</h4>
+    <form action="/" method="POST">
+      <input type="text" name="todo">
+      <button type="submit">ADD TO DO</button>
   </body>
 </html>
